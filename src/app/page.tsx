@@ -16,7 +16,7 @@ const Home = () => {
           height={150}
           width={150}
           className="h-[150px] w-[150px] rounded-full border-2 border-violet-600"
-          src="/portfolio/profile-picture.jpg"
+          src="/profile-picture.jpg"
           alt="My photo"
         />
         <div className="mt-3 flex flex-col text-center md:ml-10 md:mt-0 md:text-left">

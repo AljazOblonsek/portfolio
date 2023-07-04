@@ -10,7 +10,7 @@ type PostPreviewProps = {
 const PostPreview = ({ post }: PostPreviewProps) => (
   <div className="mt-2 flex flex-col items-center overflow-hidden rounded-md border-2 border-violet-600 md:flex-row">
     <Image
-      src={`/portfolio/${post.coverPath}`}
+      src={post.coverPath}
       alt={`${post.title} Cover`}
       width={1000}
       height={1000}
