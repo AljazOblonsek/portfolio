@@ -54,7 +54,7 @@ const Post = async ({ params }: PostProps) => {
         <span className="text-3xl font-bold">{postWithHtmlContent.title}</span>
       </div>
       <Image
-        src={post.coverPath}
+        src={`/portfolio/${post.coverPath}`}
         alt={`${post.title} Cover`}
         width={1000}
         height={300}
