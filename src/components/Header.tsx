@@ -4,7 +4,7 @@ const Header = () => (
   <header>
     <nav className="flex justify-between">
       <div className="flex items-center">
-        <a href="/" className="text-xl font-bold hover:text-violet-600">
+        <a href="/portfolio" className="text-xl font-bold hover:text-violet-600">
           Aljaz Oblonsek
         </a>
       </div>
