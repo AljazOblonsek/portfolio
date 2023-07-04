@@ -22,7 +22,11 @@ const PostPreview = ({ post }: PostPreviewProps) => (
       <div className="text-sm text-gray-500">
         {getFormattedDate(post.postedAt)} &#x2022; {post.readTimeInMinutes} min read
       </div>
-      <Link href={`/posts/${post.id}`} className="font-semibold text-violet-600 hover:underline">
+      <Link
+        href={`/posts/${post.id}`}
+        className="font-semibold text-violet-600 hover:underline"
+        prefetch={false}
+      >
         Read more &#x2192;
       </Link>
     </div>

@@ -22,7 +22,7 @@ const Home = () => {
         <div className="mt-3 flex flex-col text-center md:ml-10 md:mt-0 md:text-left">
           <span className="text-2xl font-semibold">
             Hey, I&apos;m{' '}
-            <Link href="/about" className="text-violet-600 hover:underline">
+            <Link href="/about" className="text-violet-600 hover:underline" prefetch={false}>
               Aljaz
             </Link>{' '}
             👋.
