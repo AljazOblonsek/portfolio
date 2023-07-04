@@ -4,9 +4,9 @@ const Header = () => (
   <header>
     <nav className="flex justify-between">
       <div className="flex items-center">
-        <Link href="/" className="text-xl font-bold hover:text-violet-600" prefetch={false}>
+        <a href="/" className="text-xl font-bold hover:text-violet-600">
           Aljaz Oblonsek
-        </Link>
+        </a>
       </div>
       <div className="flex items-center">
         <Link href="/about" className="mr-4 text-xl hover:text-violet-600" prefetch={false}>
