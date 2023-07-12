@@ -1,3 +1,4 @@
+import Comments from '@/components/Comments';
 import { getFormattedDate } from '@/utils/getFormattedDate';
 import { getPostWithHtmlContent, getPosts } from '@/utils/getPosts';
 import Image from 'next/image';
@@ -60,13 +61,14 @@ const Post = async ({ params }: PostProps) => {
         height={300}
         className="mb-6 mt-3 h-[300px] w-full rounded-md object-cover"
       />
-      <article>
+      <article className="mb-6">
         <section
           className="prose"
           style={{ maxWidth: '100vw' }}
           dangerouslySetInnerHTML={{ __html: postWithHtmlContent.htmlContent }}
         />
       </article>
+      <Comments post={post} />
     </div>
   );
 };
