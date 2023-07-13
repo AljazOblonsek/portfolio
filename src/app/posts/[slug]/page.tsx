@@ -32,7 +32,18 @@ export const generateMetadata = ({ params }: PostProps) => {
   return {
     title: post.title,
     description: post.description,
-    image: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.id}`,
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
+          width: 1000,
+          height: 300,
+        },
+      ],
+    },
   };
 };
 
