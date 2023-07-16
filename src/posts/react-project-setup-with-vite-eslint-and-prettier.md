@@ -6,7 +6,7 @@ readTimeInMinutes: '5'
 date: '2023-07-09'
 ---
 
-Welcome to my tutorial on setting up React projects! With a plethora of resources available, I wanted to share my personal approach. Since I primarily build internal web applications, I lean towards utilizing Vite instead of frameworks like Next.js.
+Welcome to my tutorial on setting up React projects! With a plethora of resources available, I wanted to share my personal approach. As my focus lies mainly in constructing internal web applications that don't require SSR or SSG and the full suite of Next.js features, I prefer leveraging Vite - an excellent alternative to frameworks like Next.js.
 
 Let's dive right into the tutorial! 💻🚀
 
