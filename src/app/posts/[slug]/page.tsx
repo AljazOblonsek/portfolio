@@ -1,6 +1,7 @@
 import Comments from '@/components/Comments';
 import { getFormattedDate } from '@/utils/getFormattedDate';
 import { getPostWithHtmlContent, getPosts } from '@/utils/getPosts';
+import { Metadata } from 'next/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
@@ -18,7 +19,7 @@ export function generateStaticParams() {
   }));
 }
 
-export const generateMetadata = ({ params }: PostProps) => {
+export const generateMetadata = ({ params }: PostProps): Metadata => {
   const posts = getPosts();
 
   const post = posts.find((post) => post.id === params.slug);
@@ -41,6 +42,13 @@ export const generateMetadata = ({ params }: PostProps) => {
           url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
           width: 1000,
           height: 300,
+          alt: `${post.title} Cover`,
+        },
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
+          width: 600,
+          height: 600,
+          alt: `${post.title} Cover`,
         },
       ],
     },

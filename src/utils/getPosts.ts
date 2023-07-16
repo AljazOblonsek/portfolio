@@ -61,6 +61,11 @@ export const getPostWithHtmlContent = async (id: string): Promise<PostWithHtmlCo
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
+  const contentWithReplacedBaseUrl = matterResult.content.replaceAll(
+    '{{NEXT_PUBLIC_BASE_URL}}',
+    process.env.NEXT_PUBLIC_BASE_URL as string
+  );
+
   const blogPostWithHTML: PostWithHtmlContent = {
     id,
     title: matterResult.data.title,
@@ -68,7 +73,7 @@ export const getPostWithHtmlContent = async (id: string): Promise<PostWithHtmlCo
     coverPath: matterResult.data.coverPath,
     readTimeInMinutes: matterResult.data.readTimeInMinutes,
     postedAt: matterResult.data.date,
-    htmlContent: marked(matterResult.content, { mangle: false, headerIds: false }),
+    htmlContent: marked(contentWithReplacedBaseUrl, { mangle: false, headerIds: false }),
   };
 
   return blogPostWithHTML;

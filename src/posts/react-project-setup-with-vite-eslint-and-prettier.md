@@ -1,8 +1,8 @@
 ---
 title: 'React Project Setup with Vite, ESLint, and Prettier'
 description: 'Learn how to efficiently set up a React project using Vite, while incorporating ESLint and Prettier for code consistency and quality.'
-coverPath: '/react-project-setup-with-vite-eslint-and-prettier.png'
-readTimeInMinutes: '3'
+coverPath: '/react-project-setup-with-vite-eslint-and-prettier/cover.png'
+readTimeInMinutes: '5'
 date: '2023-07-09'
 ---
 
