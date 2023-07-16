@@ -10,7 +10,7 @@ This blog post will guide you through the basics of unit testing in React apps a
 
 ## What is Automated Testing & What is Unit Testing?
 
-For those who prefer a TLDR: Testing is essentially writing code to verify that your code works correctly.
+For those who prefer a TLDR: Automated testing is essentially writing code to verify that your code works correctly.
 
 <img src="/unit-testing-react-apps-vitest-react-testing-library/testing-meme.webp" alt="Testing Meme" style="margin-bottom: 0;"/>
 <span style="font-style: italic; font-size: 0.65rem;">Source: programmerhumor.io</span>
