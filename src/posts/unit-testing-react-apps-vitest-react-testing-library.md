@@ -15,9 +15,9 @@ For those who prefer a TLDR: Automated testing is essentially writing code to ve
 <img src="/unit-testing-react-apps-vitest-react-testing-library/testing-meme.webp" alt="Testing Meme" style="margin-bottom: 0;"/>
 <span style="font-style: italic; font-size: 0.65rem;">Source: programmerhumor.io</span>
 
-Now, for a more formal definition: **Automated testing** is the process of evaluating and verifying software to ensure its quality, functionality, and compliance with requirements, all through an automated process.
+Now, for a more formal definition: **Automated testing** is the use of software tools to execute pre-scripted tests on a software application automatically, ensuring its functionality, identifying defects, and improving overall quality.
 
-So, what is unit testing? **Unit testing** is a level of software testing where individual units or components are tested in isolation to verify their correctness and functionality. This means mocking any external dependencies, such as API calls.
+So, what is unit testing? **Unit testing** is a type of automated testing where individual units or components are tested in isolation to verify their correctness and functionality. This means mocking any external dependencies, such as API calls.
 
 In my React apps, I typically use unit tests for reusable functions and components. For example, I make sure that my `onClick` callback is called when clicking on a button. The extent of testing the functionality of your app is up to you. Sometimes, it makes sense to test every little thing; for instance, if I pass the color red to my button, I make sure that the correct style is applied. However, other times it may not be necessary to test certain aspects. Ultimately, it's your decision to determine if the time invested in writing and maintaining tests pays off.
 
