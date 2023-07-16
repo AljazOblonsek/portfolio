@@ -6,6 +6,7 @@ import { marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import { Post, PostWithHtmlContent } from '@/types/Post';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
+import { getReadingTimeInMinutes } from './getReadingTimeInMinutes';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'posts');
 
@@ -42,7 +43,7 @@ export const getPosts = (): Post[] => {
         title: matterResult.data.title,
         description: matterResult.data.description,
         coverPath: matterResult.data.coverPath,
-        readTimeInMinutes: matterResult.data.readTimeInMinutes,
+        readTimeInMinutes: getReadingTimeInMinutes(matterResult.content).toString(),
         postedAt: matterResult.data.date,
       };
 
@@ -71,7 +72,7 @@ export const getPostWithHtmlContent = async (id: string): Promise<PostWithHtmlCo
     title: matterResult.data.title,
     description: matterResult.data.description,
     coverPath: matterResult.data.coverPath,
-    readTimeInMinutes: matterResult.data.readTimeInMinutes,
+    readTimeInMinutes: getReadingTimeInMinutes(matterResult.content).toString(),
     postedAt: matterResult.data.date,
     htmlContent: marked(contentWithReplacedBaseUrl, { mangle: false, headerIds: false }),
   };
