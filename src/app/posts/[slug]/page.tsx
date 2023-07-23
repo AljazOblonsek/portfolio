@@ -40,14 +40,14 @@ export const generateMetadata = ({ params }: PostProps): Metadata => {
       images: [
         {
           url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
-          width: 1000,
-          height: 300,
+          width: 600,
+          height: 600,
           alt: `${post.title} Cover`,
         },
         {
           url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
-          width: 600,
-          height: 600,
+          width: 1000,
+          height: 300,
           alt: `${post.title} Cover`,
         },
       ],
