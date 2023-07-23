@@ -9,7 +9,7 @@ As promised in the <a href="{{NEXT_PUBLIC_BASE_URL}}/posts/unit-testing-react-ap
 
 <span style="font-weight: bold; font-size: 0.8rem;">Pro Tip: If you are already familiar with Jest but new to Vitest, you can leverage your knowledge of Jest and Google for solutions in Jest, as Vitest has a very similar API to Jest. This way, you can find Jest solutions and adapt them for your Vitest use case to streamline your testing process.</span>
 
-_Note: While we have used this code in production, and it works well for us, it might not be the best way to do it. As always, there are multiple approaches to achieve the same thing, and you must research which one works best for you._
+_Note: As always, there are multiple approaches to achieve the same thing, and you must research which one works best for you._
 
 ## Real World Example 1: Testing `useDebouncedValue` Hook
 
