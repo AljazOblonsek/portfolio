@@ -2,7 +2,6 @@
 title: 'Unit Testing React Apps: Vitest + React Testing Library'
 description: 'Discover the combined power of Vitest and React Testing Library as I walk you through essential techniques for testing React apps in this blog post.'
 coverPath: '/unit-testing-react-apps-vitest-react-testing-library/cover.png'
-readTimeInMinutes: '10'
 date: '2023-07-16'
 ---
 
