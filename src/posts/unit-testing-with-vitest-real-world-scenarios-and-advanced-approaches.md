@@ -479,11 +479,11 @@ Here, we use `it.each` to create a parameterized test. It allows us to test the 
 
 We define an array of test cases, where each test case is an array containing the name of the cart configuration (e.g., `'Cart 1'`, `'Cart 2'`) as the first element, the cart items (e.g., `cart1`, `cart2`) as the second element, and the expected total price (`cart1TotalPrice`, `cart2TotalPrice`) as the third element.
 
-The test function then takes these values as parameters and runs the test for each test case. The test name (`'[%s] should correctly calculate the total cart price'`) is formatted using the first element of each test case array (e.g., `'[Cart 1] should correctly calculate the total cart price'`, `'[Cart 2] should correctly calculate the total cart price'`). It is just used to easily understand which test fails faster in case of failure - we could also fully remove the first element if such details are not needed.
+The test function then takes these values as parameters and runs the test for each test case. The test name (`'[%s] should correctly calculate the total cart price'`) is formatted using the first element of each test case array (e.g., `'[Cart 1] should correctly calculate the total cart price'`, `'[Cart 2] should correctly calculate the total cart price'`). It is just used to easily understand which test fails in case of failure - we could also fully remove the first element if such details are not needed.
 
 <img src="/unit-testing-with-vitest-real-world-scenarios-and-advanced-approaches/get-total-cart-price-test-failure-example.png" alt="Parametrized test example failure" />
 
-Inside the test function, we calculate the total cart price using `getTotalCartPrice(cartItems)` and compare it to the expected result using e`xpect(totalCartPrice).toBe(result)`.
+Inside the test function, we calculate the total cart price using `getTotalCartPrice(cartItems)` and compare it to the expected result using `expect(totalCartPrice).toBe(result)`.
 
 By using parameterized tests, we can efficiently test the `getTotalCartPrice` function with multiple scenarios, reducing code duplication and improving the overall test suite readability.
 
