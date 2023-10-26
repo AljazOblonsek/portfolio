@@ -5,9 +5,9 @@ coverPath: '/implementing-spa-refresh-token-flow-in-next-13-app-dir/cover.png'
 date: '2023-10-26'
 ---
 
-🚀 Interested in Next.js 13's App Directory and React Server Components (RSC)? Most tutorials focus on building full-stack apps within Next.js, but what if you have a separate API?
+🚀 Interested in Next.js 13's App Directory and React Server Components (RSC)? Most tutorials focus on building full-stack apps within Next.js accessing the database directly in RSCs, but what if you already have a separate API?
 
-✨ As you migrate your SPA to Next.js, you'll encounter challenges when implementing the traditional "SPA" refresh token flow with RSCs. This article explores how to make it work.
+✨ As you try migrating your SPA to Next.js App Directory to try out the shinny new features, you'll encounter challenges when implementing the traditional "SPA" refresh token flow with RSCs. This article explores how to make it work.
 
 🧐 _Please note that this is a Proof of Concept and not intended for production use. It's an experimental workaround to leverage Next.js RSCs._
 
@@ -233,6 +233,6 @@ This mechanism ensures that the tokens get updated in the cookies, addressing th
 
 ## Conclusion
 
-As you've seen, dealing with Next.js quirks can be complex and a bit of a hassle. In my opinion, if you have the flexibility to move both your frontend and backend to Next.js, it can make your work more straightforward and enjoyable. But if that's not an option, the approach discussed here provides a way to explore how things might work.
+As you've seen, dealing with Next.js "quirks" can be complex and a bit of a hassle. In my opinion, if you have the flexibility to move both your frontend and backend to Next.js, it can make your work more straightforward and enjoyable. But if that's not an option, the approach discussed here provides a way to explore how things might work.
 
 Please remember that this article is just an exploration of options for handling refresh tokens and isn't intended for actual production use.
