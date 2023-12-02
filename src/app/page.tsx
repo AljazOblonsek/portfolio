@@ -28,7 +28,7 @@ const Home = () => {
             👋.
           </span>
           <span className="text-2xl font-semibold ">
-            I&apos;m a <span className="text-violet-600">fullstack web developer</span>.
+            I&apos;m a <span className="text-violet-600">software engineer</span>.
           </span>
           <div className="mt-2 flex justify-center md:justify-start">
             <a
