@@ -5,7 +5,7 @@ coverPath: '/zod-types-in-class-validator-dtos/cover.png'
 date: '2024-03-01'
 ---
 
-**Quick Link:** If you're here for the code, skip the backstory and <a href="#sectioncreating-iszodtype-decorator">jump to the code section</a>.
+**Quick Link:** If you're here for the code, skip the backstory and <a href="#sectionimplementing-iszodtype-decorator">jump to the code section</a>.
 
 ## The Challenge
 
