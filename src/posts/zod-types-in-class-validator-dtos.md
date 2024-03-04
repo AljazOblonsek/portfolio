@@ -13,7 +13,7 @@ In my recent project, I faced a unique challenge while working with two differen
 
 The specific issue emerged with a DTO that utilized the `IsISO8601()` decorator from `class-validator`. This DTO was then re-validated using the `z.string().datetime()` function in `zod`. While `IsISO8601()` recognized `2020-07-10 15:00:00.000` as a valid ISO 8601 date, `z.string().datetime()` did not, resulting in an error during the secondary parsing process.
 
-I was presented with two choices: allow the DTO to pass through as a simple string or develop a custom decorator in class-validator that aligned with zod's datetime validation.
+I had two choices: allow the DTO to pass through as a simple string or develop a custom decorator in class-validator that aligned with zod's datetime validation.
 
 Intrigued, I delved into the zod source code and extracted the logic for `z.string().datetime()`. I then integrated this logic into a custom decorator for `class-validator` and applied it to the DTO class. Although this solution was effective, I had concerns about its long-term reliability, especially if zod's validation criteria were updated in the future. This led me to design a more adaptable solution—a custom decorator capable of accepting any zod schema or type for validation purposes.
 
