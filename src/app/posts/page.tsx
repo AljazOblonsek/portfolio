@@ -8,8 +8,8 @@ const Posts = () => {
     <div className="flex flex-col">
       <span className="text-2xl font-semibold">Blog</span>
       <span>
-        Unveiling the world of programming through my eyes. Join me on my journey as a software
-        engineer. Welcome to my programming blog!
+        Here you&apos;ll find blog posts about the problems and interesting things I encounter in my
+        software engineering journey.
       </span>
       <div className="mt-5">
         {posts.length > 0 ? (
