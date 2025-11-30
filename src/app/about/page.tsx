@@ -6,7 +6,7 @@ const About = () => {
       </span>
       <p className="mt-5">
         I am a passionate <span className="font-semibold text-violet-600">software engineer</span>{' '}
-        currently working at nChain.
+        currently working at Move Work Forward.
       </p>
       <p className="mt-5">
         I was born in 2000, which makes me a part of the tech-savvy generation that has grown up
