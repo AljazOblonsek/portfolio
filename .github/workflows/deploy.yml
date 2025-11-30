@@ -68,7 +68,7 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_URL: https://portfolio.oblonsek.si
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
