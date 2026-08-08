@@ -1,6 +1,9 @@
 import Comments from '@/components/Comments';
+import JsonLd from '@/components/JsonLd';
+import { siteConfig } from '@/constants/site';
 import { getFormattedDate } from '@/utils/getFormattedDate';
 import { getPostWithHtmlContent, getPosts } from '@/utils/getPosts';
+import { getPostSchema } from '@/utils/getStructuredData';
 import { Metadata } from 'next/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -29,33 +32,42 @@ export const generateMetadata = async ({ params }: PostProps): Promise<Metadata>
 
   if (!post) {
     return {
-      metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
       title: 'Blog post not found.',
+      robots: { index: false, follow: true },
     };
   }
 
+  const url = `/posts/${post.id}`;
+
   return {
-    metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
     title: post.title,
     description: post.description,
+    authors: [{ name: siteConfig.author.name, url: siteConfig.url }],
+    alternates: {
+      canonical: url,
+      // Plain markdown version of this post for llms and other machine readers
+      types: {
+        'text/markdown': [{ url: `${url}.md`, title: `${post.title} (markdown)` }],
+        'application/rss+xml': [{ url: '/rss.xml', title: `${siteConfig.name} - Blog` }],
+      },
+    },
     openGraph: {
+      type: 'article',
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
       title: post.title,
       description: post.description,
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/posts/${post.id}`,
-      images: [
-        {
-          url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
-          width: 600,
-          height: 600,
-          alt: `${post.title} Cover`,
-        },
-        {
-          url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.coverPath}`,
-          width: 1000,
-          height: 300,
-          alt: `${post.title} Cover`,
-        },
-      ],
+      url,
+      publishedTime: post.postedAt,
+      modifiedTime: post.postedAt,
+      authors: [siteConfig.author.name],
+      images: [{ url: post.coverPath, alt: `${post.title} Cover` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+      images: [{ url: post.coverPath, alt: `${post.title} Cover` }],
     },
   };
 };
@@ -74,12 +86,15 @@ const Post = async ({ params }: PostProps) => {
 
   return (
     <div>
+      <JsonLd data={getPostSchema(post)} />
       <div className="flex flex-col">
         <div className="text-sm text-gray-500">
-          {getFormattedDate(postWithHtmlContent.postedAt)} &#x2022;{' '}
-          {postWithHtmlContent.readTimeInMinutes} min read
+          <time dateTime={postWithHtmlContent.postedAt}>
+            {getFormattedDate(postWithHtmlContent.postedAt)}
+          </time>{' '}
+          &#x2022; {postWithHtmlContent.readTimeInMinutes} min read
         </div>
-        <span className="text-3xl font-bold">{postWithHtmlContent.title}</span>
+        <h1 className="text-3xl font-bold">{postWithHtmlContent.title}</h1>
       </div>
       <Image
         src={post.coverPath}
