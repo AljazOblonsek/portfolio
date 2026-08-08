@@ -15,7 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col justify-between px-5 py-4 2xl:px-[25rem] 2xl:py-12">
+        <div className="mx-auto flex w-full max-w-4xl flex-col justify-between px-5 py-4 2xl:py-12">
           <div>
             <Header />
             <main className="mt-16 mb-16">{children}</main>

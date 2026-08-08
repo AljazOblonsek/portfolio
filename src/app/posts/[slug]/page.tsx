@@ -14,16 +14,18 @@ type PostProps = {
 export function generateStaticParams() {
   const posts = getPosts();
 
-  return posts.map((post) => ({
-    slug: post.id,
-  }));
+  return posts
+    .filter((post) => !post.externalUrl)
+    .map((post) => ({
+      slug: post.id,
+    }));
 }
 
 export const generateMetadata = async ({ params }: PostProps): Promise<Metadata> => {
   const { slug } = await params;
 
   const posts = getPosts();
-  const post = posts.find((post) => post.id === slug);
+  const post = posts.find((post) => post.id === slug && !post.externalUrl);
 
   if (!post) {
     return {
@@ -62,7 +64,7 @@ const Post = async ({ params }: PostProps) => {
   const { slug } = await params;
 
   const posts = getPosts();
-  const post = posts.find((post) => post.id === slug);
+  const post = posts.find((post) => post.id === slug && !post.externalUrl);
 
   if (!post) {
     return notFound();
