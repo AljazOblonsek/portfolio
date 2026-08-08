@@ -6,9 +6,9 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 type PostProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
@@ -19,18 +19,21 @@ export function generateStaticParams() {
   }));
 }
 
-export const generateMetadata = ({ params }: PostProps): Metadata => {
-  const posts = getPosts();
+export const generateMetadata = async ({ params }: PostProps): Promise<Metadata> => {
+  const { slug } = await params;
 
-  const post = posts.find((post) => post.id === params.slug);
+  const posts = getPosts();
+  const post = posts.find((post) => post.id === slug);
 
   if (!post) {
     return {
+      metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
       title: 'Blog post not found.',
     };
   }
 
   return {
+    metadataBase: process.env.NEXT_PUBLIC_BASE_URL,
     title: post.title,
     description: post.description,
     openGraph: {
@@ -56,9 +59,10 @@ export const generateMetadata = ({ params }: PostProps): Metadata => {
 };
 
 const Post = async ({ params }: PostProps) => {
-  const posts = getPosts();
+  const { slug } = await params;
 
-  const post = posts.find((post) => post.id === params.slug);
+  const posts = getPosts();
+  const post = posts.find((post) => post.id === slug);
 
   if (!post) {
     return notFound();
@@ -80,7 +84,7 @@ const Post = async ({ params }: PostProps) => {
         alt={`${post.title} Cover`}
         width={1000}
         height={300}
-        className="mb-6 mt-3 h-[300px] w-full rounded-md object-cover"
+        className="mt-3 mb-6 h-[300px] w-full rounded-md object-cover"
       />
       <article className="mb-6">
         <section
