@@ -9,7 +9,7 @@ type PostSource = {
 export const postSources = {
   personal: { name: 'Personal blog', color: '#7c3aed', icon: PenIcon },
   medium: { name: 'Medium', color: '#000000', icon: MediumIcon },
-  atlassian: { name: 'Atlassian', color: '#0052cc', icon: AtlassianIcon },
+  atlassian: { name: 'Atlassian blog', color: '#0052cc', icon: AtlassianIcon },
   company: { name: 'Company blog', color: '#4b5563', icon: GlobeIcon },
 } satisfies Record<string, PostSource>;
 

@@ -34,7 +34,7 @@ const PostPreview = ({ post }: PostPreviewProps) => (
           rel="noopener noreferrer"
           className="mt-1 w-fit text-sm font-semibold text-violet-600 hover:underline"
         >
-          Read on {postSources[post.source].name} &#x2197;
+          Read on {postSources[post.source].name.toLowerCase()} &#x2197;
           <span className="sr-only"> (opens in a new tab)</span>
         </a>
       ) : (
