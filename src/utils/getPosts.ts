@@ -5,6 +5,7 @@ import hljs from 'highlight.js';
 import { marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 import { Post, PostWithHtmlContent } from '@/types/Post';
+import { defaultPostSourceKey, PostSourceKey, postSources } from '@/constants/postSources';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { getReadingTimeInMinutes } from './getReadingTimeInMinutes';
 
@@ -23,11 +24,42 @@ marked.use(
   })
 );
 
+const toPost = (id: string, matterResult: matter.GrayMatterFile<string>): Post => {
+  const { title, description, coverPath, date, source, externalUrl, readTimeInMinutes } =
+    matterResult.data;
+
+  const sourceKey: PostSourceKey = source ?? defaultPostSourceKey;
+
+  if (!Object.hasOwn(postSources, sourceKey)) {
+    throw new Error(
+      `Post "${id}" has unknown source "${source}". Valid sources: ${Object.keys(postSources).join(', ')}.`
+    );
+  }
+
+  // External posts need read time defined since we cannot dynamically calculate it
+  if (externalUrl && !readTimeInMinutes) {
+    throw new Error(`External post "${id}" must define "readTimeInMinutes" in its frontmatter.`);
+  }
+
+  return {
+    id,
+    title,
+    description,
+    coverPath,
+    readTimeInMinutes: readTimeInMinutes
+      ? String(readTimeInMinutes)
+      : getReadingTimeInMinutes(matterResult.content).toString(),
+    postedAt: date,
+    source: sourceKey,
+    ...(externalUrl ? { externalUrl: String(externalUrl) } : {}),
+  };
+};
+
 export const getPosts = (): Post[] => {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPosts = fileNames
-    .filter((fileName) => fileName !== '.gitkeep')
+    .filter((fileName) => fileName.endsWith('.md'))
     .map((fileName) => {
       // Remove ".md" from file name to get id
       const id = fileName.replace(/\.md$/, '');
@@ -39,17 +71,8 @@ export const getPosts = (): Post[] => {
       // Use gray-matter to parse the post metadata section
       const matterResult = matter(fileContents);
 
-      const post: Post = {
-        id,
-        title: matterResult.data.title,
-        description: matterResult.data.description,
-        coverPath: matterResult.data.coverPath,
-        readTimeInMinutes: getReadingTimeInMinutes(matterResult.content).toString(),
-        postedAt: matterResult.data.date,
-      };
-
       // Combine the data with the id
-      return post;
+      return toPost(id, matterResult);
     });
 
   // Sort posts by date
@@ -69,12 +92,7 @@ export const getPostWithHtmlContent = async (id: string): Promise<PostWithHtmlCo
   );
 
   const blogPostWithHTML: PostWithHtmlContent = {
-    id,
-    title: matterResult.data.title,
-    description: matterResult.data.description,
-    coverPath: matterResult.data.coverPath,
-    readTimeInMinutes: getReadingTimeInMinutes(matterResult.content).toString(),
-    postedAt: matterResult.data.date,
+    ...toPost(id, matterResult),
     htmlContent: await marked(contentWithReplacedBaseUrl),
   };
 
