@@ -18,7 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="flex flex-col justify-between px-5 py-4 2xl:px-[25rem] 2xl:py-12">
           <div>
             <Header />
-            <main className="mb-16 mt-16">{children}</main>
+            <main className="mt-16 mb-16">{children}</main>
           </div>
           <Footer />
         </div>

@@ -14,6 +14,7 @@ marked.use(gfmHeadingId({ prefix: 'section' }));
 
 marked.use(
   markedHighlight({
+    async: true,
     langPrefix: 'hljs language-',
     highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
@@ -74,7 +75,7 @@ export const getPostWithHtmlContent = async (id: string): Promise<PostWithHtmlCo
     coverPath: matterResult.data.coverPath,
     readTimeInMinutes: getReadingTimeInMinutes(matterResult.content).toString(),
     postedAt: matterResult.data.date,
-    htmlContent: marked(contentWithReplacedBaseUrl, { mangle: false, headerIds: false }),
+    htmlContent: await marked(contentWithReplacedBaseUrl),
   };
 
   return blogPostWithHTML;
