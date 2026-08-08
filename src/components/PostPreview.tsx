@@ -22,10 +22,11 @@ const PostPreview = ({ post }: PostPreviewProps) => (
       <PostBadge source={post.source} className="absolute top-2 left-2" />
     </div>
     <div className="flex min-w-0 flex-col justify-center px-2 py-4 md:px-3">
-      <div className="text-lg leading-snug font-semibold">{post.title}</div>
-      <div className="mt-1.5 leading-snug text-gray-600">{post.description}</div>
+      <h2 className="text-lg leading-snug font-semibold">{post.title}</h2>
+      <p className="mt-1.5 leading-snug text-gray-600">{post.description}</p>
       <div className="mt-3 text-sm text-gray-500">
-        {getFormattedDate(post.postedAt)} &#x2022; {post.readTimeInMinutes} min read
+        <time dateTime={post.postedAt}>{getFormattedDate(post.postedAt)}</time> &#x2022;{' '}
+        {post.readTimeInMinutes} min read
       </div>
       {post.externalUrl ? (
         <a

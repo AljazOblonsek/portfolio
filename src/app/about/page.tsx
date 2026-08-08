@@ -1,9 +1,38 @@
+import JsonLd from '@/components/JsonLd';
+import { siteConfig } from '@/constants/site';
+import { getAboutPageSchema } from '@/utils/getStructuredData';
+import { Metadata } from 'next/types';
+
+const description = `About ${siteConfig.name} - software engineer working with TypeScript, React, Next.js, NestJS and AWS.`;
+
+export const metadata: Metadata = {
+  title: 'About',
+  description,
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    type: 'profile',
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    url: '/about',
+    title: `About ${siteConfig.name}`,
+    description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `About ${siteConfig.name}`,
+    description,
+  },
+};
+
 const About = () => {
   return (
     <div className="flex flex-col">
-      <span className="text-2xl font-semibold">
+      <JsonLd data={getAboutPageSchema()} />
+      <h1 className="text-2xl font-semibold">
         Hey, I&apos;m <span className="text-violet-600">Aljaz</span> 👋.
-      </span>
+      </h1>
       <p className="mt-5">
         I am a passionate <span className="font-semibold text-violet-600">software engineer</span>{' '}
         currently working at Move Work Forward.
@@ -18,7 +47,7 @@ const About = () => {
           with the latest technologies. Currently, some of the technologies and skills that I
           specialize in include:
         </p>
-        <div className="ml-3 mt-1 list-disc">
+        <ul className="mt-1 ml-3 list-disc">
           <li>
             <span className="font-semibold">Front-end development</span>: HTML5, CSS3, JavaScript
             (ES5, ES6+), <span className="font-semibold">TypeScript</span>,{' '}
@@ -40,7 +69,7 @@ const About = () => {
             <span className="font-semibold">Other</span>: Git, Github, Gitlab, Docker, Docker
             Compose, Gitlab CI & Pipelines
           </li>
-        </div>
+        </ul>
       </div>
       <p className="mt-5">
         Feel free to connect with me on{' '}

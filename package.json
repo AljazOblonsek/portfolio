@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node --env-file-if-exists=./.env scripts/generate-static-assets.mjs && next dev",
+    "build": "node --env-file-if-exists=./.env scripts/generate-static-assets.mjs && next build",
+    "generate:assets": "node --env-file-if-exists=./.env scripts/generate-static-assets.mjs",
     "start": "next start",
     "lint": "next lint"
   },

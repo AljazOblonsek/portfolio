@@ -3,12 +3,52 @@ import './highlight.css';
 import Header from '../components/Header';
 import { Inter } from 'next/font/google';
 import Footer from '../components/Footer';
+import { Metadata } from 'next/types';
+import { siteConfig, siteUrl } from '@/constants/site';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: "Aljaz's Portfolio",
-  description: 'Created by Aljaz',
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.author.name, url: siteUrl }],
+  creator: siteConfig.author.name,
+  publisher: siteConfig.author.name,
+  alternates: {
+    canonical: '/',
+    types: {
+      'application/rss+xml': [{ url: '/rss.xml', title: `${siteConfig.name} - Blog` }],
+    },
+  },
+  openGraph: {
+    type: 'website',
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    url: '/',
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.title,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {

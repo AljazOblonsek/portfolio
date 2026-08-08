@@ -8,6 +8,7 @@ import { Post, PostWithHtmlContent } from '@/types/Post';
 import { defaultPostSourceKey, PostSourceKey, postSources } from '@/constants/postSources';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
 import { getReadingTimeInMinutes } from './getReadingTimeInMinutes';
+import { siteUrl } from '@/constants/site';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'posts');
 
@@ -88,7 +89,7 @@ export const getPostWithHtmlContent = async (id: string): Promise<PostWithHtmlCo
 
   const contentWithReplacedBaseUrl = matterResult.content.replaceAll(
     '{{NEXT_PUBLIC_BASE_URL}}',
-    process.env.NEXT_PUBLIC_BASE_URL as string
+    siteUrl
   );
 
   const blogPostWithHTML: PostWithHtmlContent = {
