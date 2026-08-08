@@ -11,7 +11,7 @@ const Posts = () => {
         Here you&apos;ll find blog posts about the problems and interesting things I encounter in my
         software engineering journey.
       </span>
-      <div className="mt-5">
+      <div className="mt-5 flex flex-col gap-4">
         {posts.length > 0 ? (
           posts.map((post) => <PostPreview key={post.id} post={post} />)
         ) : (

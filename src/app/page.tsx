@@ -51,7 +51,7 @@ const Home = () => {
         </div>
       </div>
       {recentPosts.length > 0 && (
-        <div className="mt-8">
+        <div className="mt-8 flex flex-col gap-4">
           <div className="text-xl font-semibold">Recent posts</div>
           {recentPosts.map((post) => (
             <PostPreview key={post.id} post={post} />

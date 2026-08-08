@@ -10,21 +10,21 @@ type PostPreviewProps = {
 };
 
 const PostPreview = ({ post }: PostPreviewProps) => (
-  <div className="mt-2 flex flex-col items-center overflow-hidden rounded-md border-2 border-violet-600 md:flex-row">
-    <div className="relative w-full md:h-[150px] md:w-[150px] md:shrink-0">
+  <div className="flex flex-col overflow-hidden rounded-md border-2 border-violet-600 md:flex-row md:items-stretch">
+    <div className="relative h-[180px] w-full md:h-auto md:w-[240px] md:shrink-0">
       <Image
         src={post.coverPath}
         alt={`${post.title} Cover`}
         width={1000}
         height={1000}
-        className="h-full w-full object-cover md:h-[150px] md:w-[150px]"
+        className="h-full w-full object-cover md:absolute md:inset-0"
       />
-      <PostBadge source={post.source} className="absolute left-2 top-2" />
+      <PostBadge source={post.source} className="absolute top-2 left-2" />
     </div>
-    <div className="flex flex-col justify-center px-4 py-3 md:py-0">
-      <div className="font-semibold">{post.title}</div>
-      <div>{post.description}</div>
-      <div className="text-sm text-gray-500">
+    <div className="flex min-w-0 flex-col justify-center px-2 py-4 md:px-3">
+      <div className="text-lg leading-snug font-semibold">{post.title}</div>
+      <div className="mt-1.5 leading-snug text-gray-600">{post.description}</div>
+      <div className="mt-3 text-sm text-gray-500">
         {getFormattedDate(post.postedAt)} &#x2022; {post.readTimeInMinutes} min read
       </div>
       {post.externalUrl ? (
@@ -32,7 +32,7 @@ const PostPreview = ({ post }: PostPreviewProps) => (
           href={post.externalUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-violet-600 hover:underline"
+          className="mt-1 w-fit text-sm font-semibold text-violet-600 hover:underline"
         >
           Read on {postSources[post.source].name} &#x2197;
           <span className="sr-only"> (opens in a new tab)</span>
@@ -40,7 +40,7 @@ const PostPreview = ({ post }: PostPreviewProps) => (
       ) : (
         <Link
           href={`/posts/${post.id}`}
-          className="font-semibold text-violet-600 hover:underline"
+          className="mt-1 w-fit text-sm font-semibold text-violet-600 hover:underline"
           prefetch={false}
         >
           Read more &#x2192;
